@@ -1,0 +1,23 @@
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata:
+  name: <JOB_NAME>
+spec:
+  template:
+    spec:
+      parallelism: 1
+      taskCount: 1
+      template:
+        spec:
+          containers:
+          - env:
+            - name: GCP_PROJECT
+              value: <PROJECT_ID>
+            image: <IMAGE_NAME>
+            resources:
+              limits:
+                cpu: 1000m
+                memory: 1Gi
+          maxRetries: 0
+          serviceAccountName: <SERVICE_ACCOUNT_NAME>
+          timeoutSeconds: '240'
